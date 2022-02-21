@@ -12,24 +12,25 @@
 
 <body>
   <h1>Library 2.0</h1>
-  <div id="library-view">Books goes here</div>
+  <div id="library-view">
+    <div id="bookshelf"></div>
+  </div>
 
   <button id="open-form-button">Add Book</button>
 
-  <div id="book-form">
-    <form>
+  <div>
+    <form id="book-form">
       <label>Title</label><br>
-      <input type="text" placeholder="Nineteen Eighty-Four"><br><br>
+      <input type="text" id="title" placeholder="Nineteen Eighty-Four" ><br><br>
 
       <label>Author</label><br>
-      <input type="text" placeholder="George Orwell"><br><br>
+      <input type="text"  id="author" placeholder="George Orwell" ><br><br>
 
       <label>Pages</label><br>
-      <input type="text" placeholder="347"><br><br>
+      <input type="number"  id="pages" placeholder="347" ><br><br>
 
       <label>Read</label>
-      <input type="checkbox" checked><br><br>
-
+      <input type="checkbox" id="read" ><br><br>
 
       <input type="submit" value="Add">
     </form> 
