@@ -2,6 +2,7 @@
   height: 220px;
   width: 150px;
   background-color: rgb(84, 140, 161);
+  padding: 1rem;
 }
 
 #book-form {
