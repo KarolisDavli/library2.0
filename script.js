@@ -30,7 +30,8 @@ function renderBooks() {
     
     let bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
-    bookCard.setAttribute('id', `${library.indexOf(singleBook)}`);
+    let bookIndex = library.indexOf(singleBook)
+    bookCard.setAttribute('id', bookIndex);
     let bookTitle = document.createElement('h1');
     let bookAuthor = document.createElement('h2');
     let bookPages = document.createElement('p');
@@ -78,18 +79,20 @@ openFormButton.addEventListener('click', checkIfOpen)
   }
 }
 
+
 // let currentBook = library.indexOf(removeThisId);
 
 // // Remove button event
 function removeBook(e) {
-  let removeThisId = document.getElementById(e.target.parentElement);
-  console.log(e.target.parentElement);
-  console.log(library.indexOf(removeThisId));
-  // library.splice(e.target.parentElement.id, 1);
+  let removeThisId = document.getElementById(e.target.parentElement.id);
+  console.log(e.target.parentElement.id);
+  console.log(removeThisId);
+  library.splice(e.target.parentElement.id, 1);
   
-  // removeThisId.remove();
-  // console.log(library);
-  // console.log(removeThisId);
+  bookshelf.removeChild(e.target.parentElement);
+  console.log(library);
+  clearContent();
+  renderBooks();
 }
 
 
