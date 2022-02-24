@@ -21,37 +21,32 @@ function addBookToLibrary() {
 
   let newBook = new Book(titleInput, authorInput, pagesInput, readInput);
   library.push(newBook);
-  console.log(library);
 }
 
-// Render library array to page
+// Take user input & render library array to page
 function renderBooks() {
   library.forEach((singleBook) => {
-    
     let bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
-    let bookIndex = library.indexOf(singleBook)
-    bookCard.setAttribute('id', bookIndex);
+    bookCard.setAttribute('id', library.indexOf(singleBook));
     let bookTitle = document.createElement('h1');
     let bookAuthor = document.createElement('h2');
     let bookPages = document.createElement('p');
     let bookRead = document.createElement('p')
-  
+
     bookTitle.textContent = singleBook.title;
     bookAuthor.textContent = singleBook.author;
     bookPages.textContent = singleBook.pages;
     bookRead.textContent = singleBook.read;
 
     let removeBtn = renderRemove();
-
-    
     bookCard.append(bookTitle, bookAuthor, bookPages, bookRead, removeBtn);
     bookshelf.append(bookCard);
     libraryView.append(bookshelf);
   })
 }
 
-// Submit book
+// Submit book button
 bookForm.addEventListener('submit', submitNewBook)
 
 function submitNewBook(e) {
@@ -60,18 +55,16 @@ function submitNewBook(e) {
   addBookToLibrary();
   clearContent()
   renderBooks();
-  console.log('new book submited');
 }
 
 function clearContent() {
   bookshelf.innerHTML = ''
 }
 
-// // Open new book form
-openFormButton.addEventListener('click', checkIfOpen)
+// Open new book form
+openFormButton.addEventListener('click', toggleForm)
 
-// // Toggle book form
- function checkIfOpen() {
+function toggleForm() {
   if (bookForm.style.display === 'block') {
     bookForm.style.display = 'none';
   } else {
@@ -79,24 +72,13 @@ openFormButton.addEventListener('click', checkIfOpen)
   }
 }
 
-
-// let currentBook = library.indexOf(removeThisId);
-
-// // Remove button event
+// Remove button event
 function removeBook(e) {
-  let removeThisId = document.getElementById(e.target.parentElement.id);
-  console.log(e.target.parentElement.id);
-  console.log(removeThisId);
   library.splice(e.target.parentElement.id, 1);
-  
   bookshelf.removeChild(e.target.parentElement);
-  console.log(library);
   clearContent();
   renderBooks();
 }
-
-
-
 
 // // Generate remove button
 function renderRemove() {
