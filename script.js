@@ -32,7 +32,7 @@ function renderBooks() {
     let bookTitle = document.createElement('h1');
     let bookAuthor = document.createElement('h2');
     let bookPages = document.createElement('p');
-    let bookRead = document.createElement('p')
+    let bookRead = document.createElement('p');
 
     bookTitle.textContent = singleBook.title;
     bookAuthor.textContent = singleBook.author;
@@ -40,7 +40,8 @@ function renderBooks() {
     bookRead.textContent = singleBook.read;
 
     let removeBtn = renderRemove();
-    bookCard.append(bookTitle, bookAuthor, bookPages, bookRead, removeBtn);
+    let readBtn = renderRead(bookRead);
+    bookCard.append(bookTitle, bookAuthor, bookPages, bookRead, removeBtn, readBtn);
     bookshelf.append(bookCard);
     libraryView.append(bookshelf);
   })
@@ -51,7 +52,7 @@ bookForm.addEventListener('submit', submitNewBook)
 
 function submitNewBook(e) {
   e.preventDefault()
-  checkIfOpen();
+  toggleForm();
   addBookToLibrary();
   clearContent()
   renderBooks();
@@ -72,6 +73,14 @@ function toggleForm() {
   }
 }
 
+// Generate remove button
+function renderRemove() {
+  const removeButton = document.createElement('button');
+  removeButton.addEventListener('click', removeBook);
+  removeButton.textContent = 'Remove';
+  return removeButton;
+}
+
 // Remove button event
 function removeBook(e) {
   library.splice(e.target.parentElement.id, 1);
@@ -80,15 +89,26 @@ function removeBook(e) {
   renderBooks();
 }
 
-// // Generate remove button
-function renderRemove() {
-  const removeButton = document.createElement('button');
-  removeButton.addEventListener('click', removeBook)
-  removeButton.textContent = 'Remove';
-  return removeButton;
+// Generate read button
+function renderRead() {
+  const readButton = document.createElement('button');
+  readButton.addEventListener('click', changeStatus);
+  readButton.textContent = 'Read';
+  return readButton;
 }
 
-
+function changeStatus(e) {
+  let readKey = e.target.parentElement.childNodes[3];
+  let parentID = e.target.parentElement.id;
+  if (readKey.textContent == 'false') {
+    library[parentID].read = true;
+  } else {
+    library[parentID].read = false;
+  }
+  clearContent();
+  renderBooks();
+  console.log(library);
+}
 
 
 
