@@ -66,10 +66,10 @@ function clearContent() {
 openFormButton.addEventListener('click', toggleForm)
 
 function toggleForm() {
-  if (bookForm.style.display === 'block') {
+  if (bookForm.style.display === 'flex') {
     bookForm.style.display = 'none';
   } else {
-    bookForm.style.display = 'block';
+    bookForm.style.display = 'flex';
   }
 }
 
@@ -107,7 +107,6 @@ function changeStatus(e) {
   }
   clearContent();
   renderBooks();
-  console.log(library);
 }
 
 
