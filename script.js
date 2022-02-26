@@ -29,15 +29,15 @@ function renderBooks() {
     let bookCard = document.createElement('div');
     bookCard.classList.add('book-card');
     bookCard.setAttribute('id', library.indexOf(singleBook));
-    let bookTitle = document.createElement('h1');
-    let bookAuthor = document.createElement('h2');
+    let bookTitle = document.createElement('p');
+    let bookAuthor = document.createElement('p');
     let bookPages = document.createElement('p');
     let bookRead = document.createElement('p');
 
     bookTitle.textContent = singleBook.title;
-    bookAuthor.textContent = singleBook.author;
-    bookPages.textContent = singleBook.pages;
-    bookRead.textContent = singleBook.read;
+    bookAuthor.textContent = `Author: ${singleBook.author}`;
+    bookPages.textContent = `Pages: ${singleBook.pages}`;
+    bookRead.textContent = `Have you read it? ${singleBook.read}`;
 
     let removeBtn = renderRemove();
     let readBtn = renderRead(bookRead);
@@ -100,7 +100,7 @@ function renderRead() {
 function changeStatus(e) {
   let readKey = e.target.parentElement.childNodes[3];
   let parentID = e.target.parentElement.id;
-  if (readKey.textContent == 'false') {
+  if (readKey.textContent == 'Have you read it? false') {
     library[parentID].read = true;
   } else {
     library[parentID].read = false;
