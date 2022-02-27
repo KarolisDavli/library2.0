@@ -56,6 +56,7 @@ function submitNewBook(e) {
   addBookToLibrary();
   clearContent()
   renderBooks();
+  bookForm.reset();
 }
 
 function clearContent() {
